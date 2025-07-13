@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre panier - MonShop</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">MonShop</a>
+            <nav class="nav-links">
+                <a href="/product-list.html">Produits</a>
+                <a href="/templates/cart.html" class="nav-link">
+                    Panier <span class="cart-count">0</span>
+                </a>
+                <a href="/templates/login.html" class="login-btn">Connexion</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app">
+        <section class="cart-page">
+            <h1>Votre Panier</h1>
+            <div class="cart-items" id="cart-items">
+                <!-- Les articles du panier seront chargés via JavaScript -->
+            </div>
+            <div class="cart-summary">
+                <h3>Total: <span id="cart-total">0.00</span> €</h3>
+                <div class="cart-actions">
+                    <button id="clear-cart" class="secondary-btn">Vider le panier</button>
+                    <a href="/templates/checkout.html" id="checkout-btn" class="primary-btn">Passer la commande</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 MonShop. Tous droits réservés.</p>
+    </footer>
+
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            displayCartItems();
+            updateCartCount();
+            
+            document.getElementById('clear-cart').addEventListener('click', clearCart);
+            
+            // Vérifier si l'utilisateur est connecté pour le checkout
+            document.getElementById('checkout-btn').addEventListener('click', (e) => {
+                if (!isAuthenticated()) {
+                    e.preventDefault();
+                    alert('Veuillez vous connecter pour passer commande');
+                    window.location.href = '/templates/login.html?redirect=/templates/checkout.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

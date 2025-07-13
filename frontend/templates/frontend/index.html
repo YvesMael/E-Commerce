@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ma Boutique</title>
+  <link rel="stylesheet" href="{% static 'frontend/CSS/style.css' %}"/>
+  <script src="{% static 'frontend/JavaScript/script.js' %}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Chuin<span>Cho</span></h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'accueil' %}">Accueil</a></li>
+          <li class="categories">
+            <a>Produits</a>
+            <ul>
+                <li><a href="#lesproduits">Gateaux</a></li>
+                <li><a href="#leschocolats">Chocolats</a></li>
+            </ul>
+        </li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Mon Panier</a></li>
+          <li><a href="#" class="btn">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Ici on se regale, et toi ?</h2>
+      <p>Des produits de qualité, fabriqués localement avec passion.</p>
+      <a href="#lesproduits" class="btn">Voir nos produits</a>
+    </div>
+  </section>
+
+  <section id="lesproduits" class="products container">
+    <!-- <h3>Nos Produits</h3> -->
+    <h3>Nos Gateaux</h3>
+    <div id="product-grid">
+      <h3>Chargement...</h3>
+    </div>
+    <h3 id="leschocolats">Nos Chocolats</h3>
+    <div id="chocolats-grid">
+      <h3>Chargement</h3>
+    </div>
+  </section>
+  <button id="btn-panier">
+    🛒 Voir le panier
+  </button>
+
+  <div id="popup-panier" class="popup">
+    <div class="popup-contenu">
+      <span class="fermer" id="fermer">&times;</span>
+      <h2>Votre panier</h2>
+      <ul id="liste-produits-panier"></ul>
+      <button id="soumettrePanier">Confirmer et envoyer</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 MaBoutique. Tous droits réservés.</p>
+  </footer>
+</body>
+<script>
+  const csrftoken = '{{ csrf_token }}';
+</script>
+</html>
