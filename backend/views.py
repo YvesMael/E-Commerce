@@ -13,23 +13,45 @@ from django.contrib.auth import authenticate
 
 @api_view(['POST'])
 def creerCompte(request):
-    nouvelUtilisateur = request.POST.get('utilisateur')
+    print("Requete de creation de compte: ", request.data)
+    nouvelUtilisateur = {
+        'username': 'Mon',
+        'first_name': request.data.get('nom'),
+        'last_name': request.data.get('nom'),
+        'telephone': int(request.data.get('tel')),
+        'adresse': request.data.get('adresse'),
+        'password': request.data.get('password'),
+        'password': request.data.get('password2')
+    }
+    print("Nouvel utilisateur User: ", nouvelUtilisateur)
     nouvelUtilisateurSerialiser = UtilisateurSerializer(data=nouvelUtilisateur)
+    print("Nouvel utilisateur: ", nouvelUtilisateurSerialiser.error_messages)
     if nouvelUtilisateurSerialiser.is_valid(raise_exception=True):
-        nouvelUtilisateurSerialiser.save()
+        user = nouvelUtilisateurSerialiser.save()
+        user.set_password(nouvelUtilisateur['password'])
+        user.save()
         return Response({'message':'creation de compte reussie, vous etes connecte'})
     return Response({'message':'Echec de creation de compte'})
 
 @api_view(['GET'])
 def listeproduits(request):
     try:
-        liste = Produit.objects.all()
-        if liste.__len__() == 0:
-            return Response({'data':None, 'message':'Aucun produit'})
-        listeSerializer = ProduitSerializer(instance=liste, many=True)
-        return Response({'data':listeSerializer.data, 'message':'Liste des produits'})
+        listeGateaux = Produit.objects.filter(categorie='Gateaux')
+        listeChocolats = Produit.objects.filter(categorie='Chocolat')
+        listeAppareils = Produit.objects.filter(categorie='Appareils')
+        if not listeGateaux and not listeChocolats and not listeAppareils:
+            return Response({'data': None, 'message': 'Aucun produit'})
+        listeGateauxSerializer = ProduitSerializer(instance=listeGateaux, many=True)
+        listeChocolatsSerializer = ProduitSerializer(instance=listeChocolats, many=True)
+        listeAppareilsSerializer = ProduitSerializer(instance=listeAppareils, many=True)
+        listeSerializer = {
+            'gateaux': listeGateauxSerializer.data,
+            'chocolats': listeChocolatsSerializer.data,
+            'appareils': listeAppareilsSerializer.data
+        }
+        return Response({'data': listeSerializer, 'message': 'Liste des produits'})
     except Exception as e:
-        return Response({'message':'erreur: '+str(e)})
+        return Response({'message': 'erreur: ' + str(e)})
 
 class LoginAPIView(APIView):
     def post(self, request):

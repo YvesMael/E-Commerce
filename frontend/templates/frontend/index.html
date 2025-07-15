@@ -2,30 +2,49 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ma Boutique</title>
-  <link rel="stylesheet" href="{% static 'frontend/CSS/style.css' %}"/>
-  <script src="{% static 'frontend/JavaScript/script.js' %}"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Chuincho</title>
+    <link rel="stylesheet" href="{% static 'frontend/CSS/style.css' %}"/>
+    <script src="{% static 'frontend/JavaScript/script.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const intro = document.querySelector('.intro-gateaux');
+  function onScroll() {
+    const rect = intro.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      intro.classList.add('visible');
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll(); // pour le cas où déjà visible au chargement
+});
+</script>
 <body>
   <header>
     <div class="container">
       <h1 class="logo">Chuin<span>Cho</span></h1>
       <nav>
         <ul>
-          <li><a href="{% url 'accueil' %}">Accueil</a></li>
+          <li><a href="{% url 'frontend:accueil' %}">Accueil</a></li>
           <li class="categories">
             <a>Produits</a>
             <ul>
                 <li><a href="#lesproduits">Gateaux</a></li>
                 <li><a href="#leschocolats">Chocolats</a></li>
+                <li><a href="#lesappareils">Appareils</a></li>
             </ul>
         </li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Mon Panier</a></li>
-          <li><a href="#" class="btn">Connexion</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="#" id="nav-panier">
+              Mon Panier <sup id="panier-count" style="background:var(--primary-color);color:#fff;border-radius:50%;padding:2px 7px;font-size:0.9em;vertical-align:super;">0</sup>
+            </a>
+          </li>
+          <li><a href="{% url 'frontend:connexion' %}" class="btn">Connexion</a></li>
         </ul>
       </nav>
     </div>
@@ -38,18 +57,52 @@
       <a href="#lesproduits" class="btn">Voir nos produits</a>
     </div>
   </section>
-
+  <div class="intro-gateaux">
+    <div class="gauche">
+      <p>Le plaisir que nous avons réside dans votre satisfaction. Etre toujours à votre écoute est un choix que nous assumons pleinnement.<span> "By Chuincho" </span></p>
+    </div>
+    <div class="droite">
+      <img src="{% static 'images/photo-1509440159596-0249088772ff.jpg' %}" alt="image gateaux" />
+    </div>
+  </div>
+  <div class="barre-anim"></div>
   <section id="lesproduits" class="products container">
     <!-- <h3>Nos Produits</h3> -->
     <h3>Nos Gateaux</h3>
     <div id="product-grid">
       <h3>Chargement...</h3>
     </div>
+    <!-- Nouvelle intro-chocolats -->
+    <div class="intro-chocolats">
+      <div class="gauche">
+        <p>Découvrez nos chocolats specialement concus pour vous, a vos gouts et pour votre plaisir<span> "Chuincho Chocolatier" </span></p>
+      </div>
+      <div class="droite">
+        <img src="{% static 'images/photo-1509440159596-0249088772ff.jpg' %}" alt="image chocolats" />
+      </div>
+    </div>
+    <div class="barre-anim barre-anim-chocolats"></div>
+
     <h3 id="leschocolats">Nos Chocolats</h3>
     <div id="chocolats-grid">
       <h3>Chargement</h3>
     </div>
+    <!-- Nouvelle intro-appareils -->
+     <div class="intro-appareils">
+        <div class="gauche">
+          <p>Chuincho dans l'electronique. Nous vous suivons où vos besoins s'expriment, pour vous garantir la qualité et des produits adaptés à vos besoins.<span> "By Chuincho" </span></p>
+        </div>
+        <div class="droite">
+          <img src="{% static 'images/photo-1509440159596-0249088772ff.jpg' %}" alt="image gateaux" />
+        </div>
+      </div>
+      <div class="barre-anim-appareils"></div>
+      <h3 id="lesappareils" class="products-title">Nos Appareils Electroniques</h3>
+      <div id="appareils-grid">
+        <h3>Chargement</h3>
+      </div>
   </section>
+
   <button id="btn-panier">
     🛒 Voir le panier
   </button>
@@ -63,9 +116,53 @@
     </div>
   </div>
 
+  <div class="avis-clients">
+    <h2>Avis de nos clients</h2>
+    <div class="avis-container">
+      <div class="avis-card">
+        <p>"Binoso ya motindo ya lolenge! Bokende ekomi na ntango ya malamu mpe ezali na lolenge."</p>
+        <p>- Monga Mutombo</p>
+      </div>
+      <div class="avis-card">
+        <p>"J'adore la variété des produits proposés. Toujours frais et délicieux !"</p>
+        <p>- Jean Martin</p>
+      </div>
+      <div class="avis-card">
+        <p>"Serivisi ya bclient ezali malamu mingi. Bazali toujours na kati ya koluka."</p>
+        <p>- Banze Mbayo</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="planifier-event">
+    <h2>Planifiez votre événement</h2>
+    <p>Contactez-nous pour organiser vos événements avec nos produits.</p>
+    <input type="email" name="email" id="email" placeholder="Votre email" required>
+    <input type="text" name="event" id="event" placeholder="Type d'événement" required>
+    <input type="date" name="date" id="date" required>
+    <input type="submit" value="Planifier" id="planifier-btn">
+  </div>
+
+  <h2 class="nous-contacter">Nous contacter</h2>
+  <div class="contact" id="contact">
+    <div class="facebook">
+      <h4><img src="{% static 'images/facebook.png' %}" alt="facebook"> Facebook </h4>
+      Notre page : <a href="#">cliquez ici</a>
+    </div>
+    <div class="whatsapp">
+      <h4><img src="{% static 'images/whatsapp.png' %}" alt="whatsapp"> Whatsapp </h4>
+      Notre contact : <a href="#">cliquez ici</a>
+    </div>
+    <div class="instagram">
+      <h4><img src="{% static 'images/instagram.png' %}" alt="instagram"> Instagram </h4>
+      Notre page : <a href="#">cliquez ici</a>
+    </div>
+  </div>
+
   <footer>
-    <p>&copy; 2025 MaBoutique. Tous droits réservés.</p>
+    <p>&copy; 2025 Chuincho. Tous droits réservés.</p>
   </footer>
+  <div id="popup-success">Votre demande a bien été envoyée !</div>
 </body>
 <script>
   const csrftoken = '{{ csrf_token }}';

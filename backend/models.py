@@ -5,9 +5,8 @@ from django.core.validators import MaxValueValidator
 from PIL import Image
 
 class Utilisateur(AbstractUser):
-    nom = models.CharField(max_length=250)
-    prenom = models.CharField(max_length=250)
     telephone = models.IntegerField(unique=True)
+    adresse = models.CharField(max_length=250)
 
 class Vendeur(models.Model):
     utilisateur = models.OneToOneField('Utilisateur', primary_key=True, on_delete=models.CASCADE, related_name="utilisateurVendeur")

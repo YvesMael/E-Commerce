@@ -10,10 +10,18 @@ class ProduitSerializer(serializers.ModelSerializer):
 
 class UtilisateurSerializer(serializers.ModelSerializer):
     class Meta:
-        model = get_user_model()
-        fields = '__all__'
+        model = Utilisateur
+        fields = ['username', 'first_name', 'last_name', 'telephone', 'adresse', 'password']
 
+    def validate(self, data):
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError("Les mots de passe ne correspondent pas")
+        return data
 
+    def create(self, validated_data):
+        validated_data.pop('password2')
+        user = User.objects.create_user(**validated_data)
+        return user
 
 # create type Enfant(
 #     Prenom varchar(20),
