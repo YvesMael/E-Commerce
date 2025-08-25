@@ -3,16 +3,17 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator
 from PIL import Image
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 class Utilisateur(AbstractUser):
-    nom = models.CharField(max_length=250)
-    prenom = models.CharField(max_length=250)
-    telephone = models.IntegerField(unique=True)
+    telephone = PhoneNumberField()
+    adresse = models.CharField(max_length=250)
 
 class Vendeur(models.Model):
     utilisateur = models.OneToOneField('Utilisateur', primary_key=True, on_delete=models.CASCADE, related_name="utilisateurVendeur")
 
-class Client(Utilisateur):
+class Client(models.Model):
     utilisateur = models.OneToOneField('Utilisateur', primary_key=True, on_delete=models.CASCADE, related_name="utilisateurClient") 
 
 class Categorie(models.Model):
@@ -44,9 +45,10 @@ class Produit(models.Model):
         self.quantite = self.quantite - qte_reduite
         return True
         
-class Panier(models.Model):
-    client = models.OneToOneField('Client', on_delete=models.CASCADE)
-    etat = models.BooleanField(default=False)
+class Panier(models.Model):  # d'apres l'implementation qui a ete faite dans la vue, on aurait pu renommer Panier en Commande
+    client = models.ForeignKey('Client', on_delete=models.CASCADE)
+    etat = models.BooleanField(default=False) #Pour savoir si la commande est livree (validee) ou pas. Par defaut apres creation elle n'est pas livree (logique)
+    dateSoumission = models.DateTimeField(auto_now=True)
 
     def valider(self):
         self.etat = True

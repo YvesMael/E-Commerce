@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'backend',
     'frontend',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,11 @@ AUTH_USER_MODEL = 'backend.Utilisateur'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media/')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'yvesmaelt@gmail.com'
+EMAIL_HOST_PASSWORD = 'guhv sqmg ogmw wkhe'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

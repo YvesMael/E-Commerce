@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Créer un compte | Chuincho</title>
+  <link rel="stylesheet" href="{% static 'frontend/CSS/style.css' %}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar identique à index.html -->
+  <header>
+    <div class="container">
+      <h1 class="logo">Chuin<span>Cho</span></h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'frontend:accueil' %}">Accueil</a></li>
+          <li class="categories">
+            <a>Produits</a>
+            <ul>
+                <li><a href="{% url 'frontend:accueil' %}#lesproduits">Gateaux</a></li>
+                <li><a href="{% url 'frontend:accueil' %}#leschocolats">Chocolats</a></li>
+                <li><a href="{% url 'frontend:accueil' %}#lesappareils">Appareils</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'frontend:accueil' %}#contact">Contact</a></li>
+          <li>
+            <a href="#" id="nav-panier">
+              Mon Panier <sup id="panier-count" style="background:var(--primary-color);color:#fff;border-radius:50%;padding:2px 7px;font-size:0.9em;vertical-align:super;">0</sup>
+            </a>
+          </li>
+          <li><a href="{% url 'frontend:connexion' %}" class="btn">Connexion</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Formulaire de création de compte -->
+  <div class="connexion-section">
+        <form class="connexion-form" method="post" id="formCreerCompte">
+            {% csrf_token %}
+            <h2>Créer un compte</h2>
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prenom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Votre prenom">
+          </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="Votre téléphone">
+            </div>
+            <div class="form-group">
+                <label for="adresse">Adresse</label>
+                <input type="text" id="adresse" name="adresse" placeholder="Votre adresse">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Votre mot de passe">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirmer le mot de passe</label>
+                <input type="password" id="password2" name="password2" placeholder="Confirmez le mot de passe">
+            </div>
+            <p>Vous avez déjà un compte ? <a href="{% url 'frontend:connexion' %}">Se connecter</a></p>
+            <button type="submit" class="btn">Créer mon compte</button>
+        </form>   
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Chuincho. Tous droits réservés.</p>
+  </footer>
+    <script src="{% static 'frontend/JavaScript/script.js' %}"></script>    
+    <script src="{% static 'frontend/JavaScript/creerCompte.js' %}"></script>    
+</body>
+</html>
