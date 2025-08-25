@@ -52,7 +52,6 @@ class LoginAPIView(APIView):
         if user:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
-            print("l'utilisateur connecter: ",request.user.id)
             return Response({'token': token.key, 'user_id': user.id, 'username': user.username, 'redirect_url': reverse('frontend:accueil')})
         else:
             return Response({'error': 'Identifiants invalides'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -100,14 +99,10 @@ class PanierAPIView(APIView):
     @parser_classes([MultiPartParser, FormParser])
     @permission_classes([IsAuthenticated])
     def post(self, request):
-        print("utilisateur: ", request.user.id)
         client = Client.objects.get(utilisateur__pk=request.user.id)
-        print("connecter?: ", request.user.is_authenticated)
         try:
-            print("dans le try")
             lesProduits_json = request.POST.get('panier')
             lesProduits = json.loads(lesProduits_json)
-            print("les produits apres json: ", lesProduits)
             # quantite = request.POST.get('quantite')
             # panier = Panier.objects.get_or_create(client=client, defaults={'etat':True})  # j'utilisais ceci lorsque chaque client n'avait qu'un seul panier 
             panier = Panier.objects.create(client=client)

@@ -1147,3 +1147,111 @@ footer {
     font-size: 1.1rem;
   }
 }
+
+@media (max-width: 600px) {
+  header {
+    padding: 0.5rem 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    padding-left: 1rem;
+  }
+
+  .categories ul {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+  }
+
+  .categories:hover ul {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .categories ul li {
+    padding: 0.4rem 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .intro-appareils {
+    flex-direction: column;
+    min-height: unset;
+  }
+
+  .intro-appareils .gauche,
+  .intro-appareils .droite {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .intro-appareils .droite img {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #product-grid,
+  #appareils-grid,
+  #chocolats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+
+  .product-card {
+    padding: 1rem;
+  }
+
+  .titre-produit {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  #popup-success {
+    left: 5%;
+    width: 90%;
+    top: 10%;
+  }
+}
+
+@media (max-width: 600px) {
+  #btn-panier {
+    padding: 12px 18px;
+    font-size: 1rem;
+    bottom: 15px;
+    left: 15px;
+  }
+}
