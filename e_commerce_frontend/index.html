@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nom du Site - Produits Alimentaires Frais</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="nav-bar">
+            <a href="#" class="logo">Nom du Site</a>
+            <ul class="nav-links">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#categories">Catégories</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="panier.html"><i class="fas fa-shopping-cart"></i><span id="cart-count">0</span></a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Le goût de la fraîcheur, directement chez vous.</h1>
+                <p>Découvrez notre sélection de produits locaux et de qualité supérieure.</p>
+                <a href="boutique.html" class="btn btn-primary">Découvrir la boutique</a>
+            </div>
+        </section>
+
+        <section id="categories" class="categories-section">
+            <h2 class="section-title">Nos Catégories</h2>
+            <div class="category-grid">
+                <a href="#" class="category-card">
+                    <img src="./images/image.jpg" alt="Fruits & Légumes">
+                    <h3>Fruits & Légumes</h3>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="./images/nourriture-saine-fruits-legumes.jpg" alt="Boulangerie">
+                    <h3>Boulangerie</h3>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="./images/R.jpeg" alt="Produits Laitiers">
+                    <h3>Produits Laitiers</h3>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="./images/depositphotos_149081393-stock-photo-composition-with-variety-of-organic.jpg" alt="Épicerie">
+                    <h3>Épicerie</h3>
+                </a>
+            </div>
+        </section>
+
+        <section class="featured-products-section">
+            <h2 class="section-title">Nos Meilleures Ventes</h2>
+            <div class="product-grid">
+                </div>
+        </section>
+
+        <section class="testimonials-section">
+            <h2 class="section-title">Ce que nos clients disent</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <p>"Des produits d'une qualité incroyable ! La livraison est toujours rapide et soignée."</p>
+                    <span>- Jean-Paul D.</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"J'adore le concept ! Je trouve tout ce dont j'ai besoin et c'est super pratique."</p>
+                    <span>- Marie L.</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Nom du Site. Tous droits réservés.</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/votre-kit-font-awesome.js" crossorigin="anonymous"></script>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>
