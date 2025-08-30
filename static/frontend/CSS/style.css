@@ -102,14 +102,16 @@ nav a:hover::after {
   border-radius: 5px;
   padding: 1rem 0;
   opacity: 0;
-  visibility: hidden;
   transform: translateY(10px);
   transition: all 0.3s;
+  display: none;
+  list-style: none;
+  padding-left: 1rem;
 }
 
-.categories:hover ul {
+.categories.active ul {
   opacity: 1;
-  visibility: visible;
+  display: block;
   transform: translateY(0);
 }
 
@@ -1049,6 +1051,9 @@ footer {
   width: 100%;
   font-size: 1.1rem;
 }
+.menu-toggle {
+  display: none;
+}
 
 /* Animations */
 @keyframes fadeInUp {
@@ -1079,10 +1084,6 @@ footer {
   nav ul {
     flex-direction: row;
     gap: 1rem;
-  }
-  
-  .categories ul {
-    display: none;
   }
   
   .hero {
@@ -1129,10 +1130,58 @@ footer {
   .intro-chocolats .droite img {
     max-height: 120px;
   }
+  .intro-appareils {
+    flex-direction: column;
+    min-height: unset;
+  }
+  
+  .intro-appareils .gauche,
+  .intro-appareils .droite {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+  .intro-appareils .droite img {
+    max-height: 150px;
+  }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
+  #menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    height: 3px;
+    background: var(--dark-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+  }
+  
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  #nav-menu {
+    display: none;
+  }
+
+  #nav-menu.active{
+    display: block;
+  }
   .avis-container {
     padding: 0 1rem;
   }
@@ -1146,9 +1195,7 @@ footer {
   #popup-panier h2 {
     font-size: 1.1rem;
   }
-}
 
-@media (max-width: 600px) {
   header {
     padding: 0.5rem 0;
   }
@@ -1175,35 +1222,10 @@ footer {
     padding: 0.5rem 1rem;
   }
 
-  .categories:hover ul {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-
   .categories ul li {
     padding: 0.4rem 0;
   }
-}
 
-@media (max-width: 900px) {
-  .intro-appareils {
-    flex-direction: column;
-    min-height: unset;
-  }
-
-  .intro-appareils .gauche,
-  .intro-appareils .droite {
-    max-width: 100%;
-    padding: 1rem;
-  }
-
-  .intro-appareils .droite img {
-    max-height: 150px;
-  }
-}
-
-@media (max-width: 600px) {
   .hero h2 {
     font-size: 1.5rem;
   }
@@ -1216,9 +1238,7 @@ footer {
   .hero {
     padding: 3rem 1rem;
   }
-}
 
-@media (max-width: 600px) {
   #product-grid,
   #appareils-grid,
   #chocolats-grid {
@@ -1237,17 +1257,13 @@ footer {
   .titre-produit {
     max-width: 100%;
   }
-}
 
-@media (max-width: 600px) {
   #popup-success {
     left: 5%;
     width: 90%;
     top: 10%;
   }
-}
 
-@media (max-width: 600px) {
   #btn-panier {
     padding: 12px 18px;
     font-size: 1rem;

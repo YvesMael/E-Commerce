@@ -19,13 +19,17 @@ class Client(models.Model):
 class Categorie(models.Model):
     nom = models.CharField(max_length=100, unique=True)
 
+    def __str__(self):
+        return self.nom
+
 class Produit(models.Model):
     image = models.ImageField(upload_to='media/', default='defaut.jpg')
     libelle = models.CharField(max_length=250)
+    ancienPrix = models.PositiveIntegerField()
     prixUnitaire = models.PositiveIntegerField()
     quantite = models.PositiveIntegerField()
     dateAJout = models.DateField(validators=[MaxValueValidator(now().date())])
-    categorie = models.ForeignKey(to=Categorie, to_field="nom", null=True, on_delete=models.SET_NULL)
+    categorie = models.ForeignKey(to=Categorie, null=True, on_delete=models.SET_NULL)
     vendeur = models.ForeignKey('Vendeur', on_delete=models.CASCADE)
 
     IMAGE_MAX_SIZE = (400, 400)

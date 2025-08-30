@@ -27,9 +27,9 @@ def creerCompte(request):
 @api_view(['GET'])
 def listeproduits(request):
     try:
-        listeGateaux = Produit.objects.filter(categorie='Gateaux')
-        listeChocolats = Produit.objects.filter(categorie='Chocolat')
-        listeAppareils = Produit.objects.filter(categorie='Appareils')
+        listeGateaux = Produit.objects.filter(categorie__nom='Body Gaine')
+        listeChocolats = Produit.objects.filter(categorie__nom='Chocolat')
+        listeAppareils = Produit.objects.filter(categorie__nom='Appareils')
         if not listeGateaux and not listeChocolats and not listeAppareils:
             return Response({'data': None, 'message': 'Aucun produit'})
         listeGateauxSerializer = ProduitSerializer(instance=listeGateaux, many=True)

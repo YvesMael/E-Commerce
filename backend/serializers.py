@@ -5,7 +5,7 @@ class ProduitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Produit
-        fields = ('id','categorie','image','libelle','prixUnitaire')
+        fields = ('id','categorie','image','libelle','ancienPrix','prixUnitaire')
 
 class UtilisateurSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)

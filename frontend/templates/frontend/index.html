@@ -21,20 +21,51 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   window.addEventListener('scroll', onScroll);
   onScroll(); // pour le cas où déjà visible au chargement
+
+  const menuItem = document.querySelector('.categories > a');
+  const submenuLinks = document.querySelectorAll('.categories ul li a');
+  const parentLi = menuItem.parentElement;
+
+  // Toggle au clic sur "Produits"
+  menuItem.addEventListener('click', function(e) {
+    e.preventDefault();
+    parentLi.classList.toggle('active');
+  });
+
+  // Fermer le sous-menu quand on clique sur un des liens du sous-menu
+  submenuLinks.forEach(function(link) {
+    link.addEventListener('click', function () {
+      parentLi.classList.remove('active');
+    });
+  });
+
+  const toggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  
+  toggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    toggle.classList.toggle('open');
+  });
 });
+
 </script>
 <body>
   <input type="hidden" id="redirect-url" value="{% url 'frontend:connexion' %}">
   <header>
     <div class="container">
       <h1 class="logo">Chuin<span>Cho</span></h1>
-      <nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav id="nav-menu">
         <ul>
           <li><a href="{% url 'frontend:accueil' %}">Accueil</a></li>
           <li class="categories">
-            <a>Produits</a>
+            <a href="#">Produits</a>
             <ul>
-                <li><a href="#lesproduits">Gateaux</a></li>
+                <li><a href="#lesproduits">Body Gaines</a></li>
                 <li><a href="#leschocolats">Chocolats</a></li>
                 <li><a href="#lesappareils">Appareils</a></li>
             </ul>
@@ -71,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   <section class="hero">
     <div class="container">
-      <h2>Ici on se regale, et toi ?</h2>
-      <p>Des produits de qualité, fabriqués localement avec passion.</p>
+      <h2>La satisfaction du client au dessus de tout.</h2>
+      <p>Des produits de qualité, conçus pour votre bien être.</p>
       <a href="#lesproduits" class="btn">Voir nos produits</a>
     </div>
   </section>
@@ -81,13 +112,13 @@ document.addEventListener("DOMContentLoaded", function() {
       <p>Le plaisir que nous avons réside dans votre satisfaction. Etre toujours à votre écoute est un choix que nous assumons pleinnement.<span> "By Chuincho" </span></p>
     </div>
     <div class="droite">
-      <img src="{% static 'images/photo-1509440159596-0249088772ff.jpg' %}" alt="image gateaux" />
+      <img src="{% static 'images/96832679_586641095618049_4294960766148852054_n.jpg' %}" alt="image vetement" />
     </div>
   </div>
   <div class="barre-anim"></div>
   <section id="lesproduits" class="products container">
     <!-- <h3>Nos Produits</h3> -->
-    <h3>Nos Gateaux</h3>
+    <h3>Nos Body Gaines</h3>
     <div id="product-grid">
       <h3>Chargement...</h3>
     </div>

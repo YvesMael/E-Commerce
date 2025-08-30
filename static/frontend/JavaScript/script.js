@@ -117,7 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
           div.innerHTML = `
             <img src="${produit.image}" alt="Produit">
             <h4 class="titre-produit" title="${produit.libelle}">${produit.libelle}</h4>
-            <p>Prix unitaire: ${produit.prixUnitaire} Frs</p>
+            <p><s style="font-size:0.8em;">Prix unitaire: ${produit.ancienPrix} $</s></p>
+            <p>Prix promotion: ${produit.prixUnitaire} $</p>
             <div class="qte">Quantite: <input type="number" class="qte-input" name="qte" min=1 placeholder="Ex: 1"></div>
             <button class="ajouter-btn">Ajouter au panier</button>
           `;
@@ -166,7 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
           div.innerHTML = `
             <img src="${produit.image}" alt="Produit">
             <h4 class="titre-produit" title="${produit.libelle}">${produit.libelle}</h4>
-            <p>Prix unitaire: ${produit.prixUnitaire} Frs</p>
+            <p><s style="font-size:0.8em;">Prix unitaire: ${produit.ancienPrix} $</s></p>
+            <p>Prix promotion: ${produit.prixUnitaire} $</p>
             <div class="qte">Quantite: <input type="number" class="qte-input" name="qte" min=1 placeholder="Ex: 1"></div>
             <button class="ajouter-btn">Ajouter au panier</button>
           `;
@@ -213,7 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
           div.innerHTML = `
             <img src="${produit.image}" alt="Produit">
             <h4 class="titre-produit" title="${produit.libelle}">${produit.libelle}</h4>
-            <p>Prix unitaire: ${produit.prixUnitaire} Frs</p>
+            <p><s style="font-size:0.8em;">Prix unitaire: ${produit.ancienPrix} $</s></p>
+            <p>Prix promotion: ${produit.prixUnitaire} $</p>
             <div class="qte">Quantite: <input type="number" class="qte-input" name="qte" min=1 placeholder="Ex: 1"></div>
             <button class="ajouter-btn">Ajouter au panier</button>
           `;

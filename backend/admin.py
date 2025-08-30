@@ -15,8 +15,11 @@ class PanierAdmin(admin.ModelAdmin):
     def etat_livraison(self, obj):
         return "Livree" if obj.etat else "Pas Livree"
 
+class ProduitAdmin(admin.ModelAdmin):
+    list_display = ('libelle','ancienPrix','prixUnitaire','categorie')
+
 admin.site.register(Panier, PanierAdmin)
-admin.site.register(Produit)
+admin.site.register(Produit, ProduitAdmin)
 admin.site.register(Categorie)
 admin.site.register(Utilisateur)
 admin.site.register(Vendeur)
